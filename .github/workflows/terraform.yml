@@ -7,11 +7,11 @@ on:
       - stage
     paths: 
       - terraform/** 
-    pull_request:
-        branches:
-            - main
-        paths: 
-            - terraform/**
+  pull_request:
+      branches:
+        - main
+      paths: 
+        - terraform/**
 
 env: 
   AWS_ACCESS_KEY_ID: ${{ secrets. AWS_ACCESS_KEY_ID}}
@@ -62,7 +62,7 @@ jobs:
         - name: Terraform apply
           id: apple
           if: github.ref == 'ref/heads/main' && github.event_name == 'push'
-          run: terraform apply "planfile"
+          run: terraform apply -auto-approve -input=false -parallelism=1 planfile
 
         - name: Configure AWS creds
           uses: aws-actions/configure-aws-credentials@v1
