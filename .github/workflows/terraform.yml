@@ -52,7 +52,7 @@ jobs:
 
         - name: Terraform plan
           id: plan
-          run: terraform plan 
+          run: terraform plan
           continue-on-error: true
         
         - name: terraform plan status
